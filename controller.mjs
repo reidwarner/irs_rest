@@ -1,10 +1,13 @@
 import express from 'express';
 import * as model from './model.mjs';
 import 'dotenv/config';
+import cors from 'cors';
+import { corsOptions } from './config/corsOptions.mjs';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors(corsOptions));
 await model.connect(true);
 
 app.post('/locations', async (req, res) => {
